@@ -1,10 +1,7 @@
+"use client";
+import { useRouter } from "next/navigation";
 export default function Home() {
-  return (
-    <>
-      <main
-        className="justify-center items-center flex flex-col"
-        id="main-container"
-      ></main>
-    </>
-  );
+  const router = useRouter();
+
+  return router.push("/main");
 }
