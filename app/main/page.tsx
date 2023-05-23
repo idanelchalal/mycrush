@@ -5,7 +5,7 @@ interface pageProps {}
 
 const MainPage: FC<pageProps> = ({}) => {
   return (
-    <div className="relative bg-red-300 w-full h-full">
+    <div className="relative w-full h-full">
       <Swiper />
     </div>
   );

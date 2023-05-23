@@ -6,7 +6,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="px-[5%] lg:px-[20%]">
+    <div className="px-[5%] lg:px-[25%]">
       <main
         id="main-container"
         className="
