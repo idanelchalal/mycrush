@@ -8,7 +8,7 @@ export const metadata = {
   description: "Meeting application",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;

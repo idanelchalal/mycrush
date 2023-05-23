@@ -1,3 +1,4 @@
+"use client";
 import Swiper from "@/components/Swiper";
 import { FC } from "react";
 

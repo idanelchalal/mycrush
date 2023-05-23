@@ -1,21 +1,13 @@
-"use client";
+import Logo from "@/components/Logo";
+import GoogleButton from "@/components/GoogleButton";
+import FacebookButton from "@/components/FacebookButton";
+import getIsAuthenticated from "@/libs/getIsAuthenticated";
+import { redirect } from "next/navigation";
 
-import { FC, useState } from "react";
+const AuthPage = async () => {
+  const isAuth = await getIsAuthenticated();
+  if (isAuth) redirect("/index");
 
-import { Inter } from "next/font/google";
-import Input from "@/components/Input";
-import { AiOutlineFacebook, AiOutlineGooglePlus } from "react-icons/ai";
-
-const lobster = Inter({
-  weight: "400",
-  subsets: ["cyrillic", "cyrillic-ext", "latin"],
-});
-
-interface AuthProps {}
-
-const AuthPage: FC<AuthProps> = ({}) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   return (
     <>
       <div
@@ -31,7 +23,7 @@ const AuthPage: FC<AuthProps> = ({}) => {
         >
           <div className="p-8 flex flex-col gap-10 w-full">
             <div className="space-y-3">
-              <h1 className="text-3xl font-semibold text-sky-300">
+              <h1 className="text-3xl font-semibold text-pink-300">
                 Join our community!
               </h1>
               <p className="text-sm text-zinc-300">
@@ -40,16 +32,10 @@ const AuthPage: FC<AuthProps> = ({}) => {
               </p>
             </div>
             <div className="flex flex-col gap-3 w-full" id="login-form">
-              <button className="transition bg-sky-300 hover:bg-sky-200 px-4 py-2 rounded-md text-white flex items-center justify-center gap-2">
-                <span>Sign in with</span>
-                <AiOutlineGooglePlus size={32} />
-              </button>
-              <button className="transition bg-sky-300 hover:bg-sky-200 px-4 py-2 rounded-md text-white flex items-center justify-center gap-2">
-                <span>Sign in with</span>
-                <AiOutlineFacebook size={32} />
-              </button>
-              <span className="mx-auto my-4 text-zinc-300 text-sm">
-                All rights reserved to Idandi &copy;
+              <GoogleButton />
+              <FacebookButton />
+              <span className="mx-auto text-zinc-300 text-sm aspect-square">
+                <Logo />
               </span>
             </div>
           </div>

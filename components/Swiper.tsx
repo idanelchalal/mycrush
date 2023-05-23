@@ -22,14 +22,12 @@ const Swiper: FC<SwiperProps> = ({}) => {
           className="w-full h-full absolute flex items-end justify-between px-24 pb-10"
         >
           <SwiperButton
-            bgColor="bg-red-500"
-            hoverBgColor="bg-red-600"
+            bgColor="text-red-500"
             icon={AiOutlineClose}
             id="likebutton"
           />
           <SwiperButton
-            bgColor="bg-green-500"
-            hoverBgColor="bg-green-400"
+            bgColor="text-green-500"
             icon={AiFillHeart}
             id="likebutton"
           />

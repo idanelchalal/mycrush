@@ -1,3 +1,5 @@
+import { FC } from "react";
+
 import { TbHeartHandshake } from "react-icons/tb";
 import { Lobster } from "next/font/google";
 
@@ -6,7 +8,19 @@ const lobster = Lobster({
   subsets: ["cyrillic", "cyrillic-ext", "latin"],
 });
 
-const Logo = () => {
+interface LogoProps {
+  size?: "base" | "small" | "large";
+}
+
+const Logo: FC<LogoProps> = ({ size = "base" }) => {
+  let logoClasses = `${lobster.className} text-xl text-pink-200 flex gap-1 items-center justify-center`;
+
+  if (size === "large")
+    logoClasses = `${lobster.className} text-3xl text-pink-200 flex gap-1 items-center justify-center`;
+
+  if (size === "small")
+    logoClasses = `${lobster.className} text-base text-pink-200 flex gap-1 items-center justify-center`;
+
   return (
     <div
       className="
@@ -19,9 +33,7 @@ const Logo = () => {
     w-full
     "
     >
-      <span
-        className={`${lobster.className} text-3xl text-white flex gap-1 items-center justify-center`}
-      >
+      <span className={logoClasses}>
         <TbHeartHandshake size={38} className="flex" />
         myCrush
       </span>

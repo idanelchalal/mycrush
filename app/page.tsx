@@ -1,7 +1,8 @@
-"use client";
-import { useRouter } from "next/navigation";
-export default function Home() {
-  const router = useRouter();
+import getIsAuthenticated from "@/libs/getIsAuthenticated";
+import { redirect } from "next/navigation";
 
-  return router.push("/main");
+export default async function Home() {
+  const isAuthenticated = await getIsAuthenticated();
+  if (!isAuthenticated) redirect("/auth");
+  return redirect("/index");
 }

@@ -20,6 +20,6 @@ html{
 
 .login-bg{
   background: rgb(174,220,238);
-  background: radial-gradient(circle, rgba(174,220,238,1) 0%, rgba(255,255,255,1) 45%);
+  background: radial-gradient(circle, rgb(251 207 232) 0%, rgba(255,255,255,1) 45%);
 }
 
