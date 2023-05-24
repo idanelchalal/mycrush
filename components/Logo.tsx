@@ -16,12 +16,12 @@ const Logo: FC<LogoProps> = ({ size = "base" }) => {
   let logoClasses = useCallback(() => {
     let classes;
     if (size === "large")
-      return (classes = `${lobster.className} text-3xl text-pink-200 flex gap-1 items-center justify-center`);
+      return (classes = `${lobster.className} text-3xl text-secondaryColor flex gap-1 items-center justify-center`);
 
     if (size === "small")
-      return (classes = `${lobster.className} text-base text-pink-200 flex gap-1 items-center justify-center`);
+      return (classes = `${lobster.className} text-base text-secondaryColor flex gap-1 items-center justify-center`);
 
-    return (classes = `${lobster.className} text-xl text-pink-200 flex gap-1 items-center justify-center`);
+    return (classes = `${lobster.className} text-xl text-secondaryColor flex gap-1 items-center justify-center`);
   }, [size]);
 
   return (

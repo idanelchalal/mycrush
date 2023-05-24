@@ -22,7 +22,7 @@ const AuthPage = async () => {
         >
           <div className="p-8 flex flex-col gap-10 w-full">
             <div className="space-y-3">
-              <h1 className="text-3xl font-semibold text-pink-300">
+              <h1 className="text-3xl font-semibold text-primaryColor">
                 Join our community!
               </h1>
               <p className="text-sm text-zinc-300">

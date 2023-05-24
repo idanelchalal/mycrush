@@ -23,17 +23,3 @@ html{
   background: rgb(174,220,238);
   background: radial-gradient(circle, rgb(251 207 232) 0%, rgba(255,255,255,1) 45%);
 }
-
-
-
-.modal-animation {
-  animation-name: ModalEnter;
-  animation-duration: 4s;
-  animation-delay: 3s;
-}
-
-@keyframes ModalEnter {
-  0%   {margin-top: -100px;}
-  100% {margin-top: 0px;}
-  
-}

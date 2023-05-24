@@ -20,7 +20,7 @@ const Header: FC<HeaderProps> = ({}) => {
         </div>
         <AiOutlineMenu
           onClick={menuStore.toggleMenu}
-          className={`transition cursor-pointer hover:-skew-x-12 text-3xl text-pink-200 aspect-squareflex items-center justify-center `}
+          className={`transition cursor-pointer hover:-skew-x-12 text-3xl text-secondaryColor aspect-squareflex items-center justify-center `}
         />
       </header>
     </>

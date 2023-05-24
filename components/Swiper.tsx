@@ -18,12 +18,13 @@ const getLocation = () => {
 };
 
 const Swiper: FC<SwiperProps> = ({}) => {
-  useEffect(() => {}, []);
-
   return (
     <div className="w-full h-full">
       <div className="relative w-full h-full">
         <Image
+          loading="eager"
+          placeholder="blur"
+          blurDataURL="/profile-mock.jpg"
           src="/profile-mock.jpg"
           alt="mock of profile"
           fill

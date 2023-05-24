@@ -1,6 +1,5 @@
 import Header from "@/components/Header";
-import Logo from "@/components/Logo";
-import Provider from "@/components/Provider";
+import MenuModalAdapter from "@/components/Modals/MenuModal/MenuModalAdapter";
 import getIsAuthenticated from "@/libs/getIsAuthenticated";
 import { redirect } from "next/navigation";
 
@@ -10,13 +9,14 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const session = await getIsAuthenticated();
-  // if (!session) return redirect("/auth");
+  if (!session) return redirect("/auth");
   return (
-    <Provider>
-      <div>
-        <main
-          id="main-container"
-          className="
+    <div>
+      <MenuModalAdapter session={session} />
+
+      <main
+        id="main-container"
+        className="
           select-none
           px-6
           pb-6
@@ -32,14 +32,13 @@ export default async function RootLayout({
           items-center
           overflow-hidden
           "
-        >
-          <Header />
-          <div className="relative rounded-md h-full w-full py-4 px-6 opacity-70 flex items-center justify-center overflow-hidden">
-            <div className="bg-slate-50 absolute w-full h-full"></div>
-            {children}
-          </div>
-        </main>
-      </div>
-    </Provider>
+      >
+        <Header />
+        <div className="relative rounded-md h-full w-full py-4 px-6 opacity-70 flex items-center justify-center overflow-hidden">
+          <div className="bg-slate-50 absolute w-full h-full"></div>
+          {children}
+        </div>
+      </main>
+    </div>
   );
 }
