@@ -5,9 +5,8 @@ import getIsAuthenticated from "@/libs/getIsAuthenticated";
 import { redirect } from "next/navigation";
 
 const AuthPage = async () => {
-  const isAuth = await getIsAuthenticated();
-  if (isAuth) redirect("/index");
-
+  const session = await getIsAuthenticated();
+  if (session) redirect("/");
   return (
     <>
       <div
