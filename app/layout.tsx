@@ -1,3 +1,4 @@
+import MenuModal from "@/components/Modals/MenuModal/MenuModal";
 import "./globals.css";
 import { Inter } from "next/font/google";
 
@@ -15,7 +16,11 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-slate-50`}>{children}</body>
+      <body className={`${inter.className} bg-slate-50`}>
+        <MenuModal />
+
+        {children}
+      </body>
     </html>
   );
 }

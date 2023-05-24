@@ -1,12 +1,25 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import Image from "next/image";
 
 import { AiFillHeart, AiOutlineClose } from "react-icons/ai";
 import SwiperButton from "./SwiperButton";
 
-interface SwiperProps {}
+interface SwiperProps {
+  session?: any | null;
+}
+
+const errorCallback = () => false;
+
+const getLocation = () => {
+  navigator.geolocation.watchPosition((location) => {}, errorCallback, {
+    enableHighAccuracy: true,
+    timeout: 5000,
+  });
+};
 
 const Swiper: FC<SwiperProps> = ({}) => {
+  useEffect(() => {}, []);
+
   return (
     <div className="w-full h-full">
       <div className="relative w-full h-full">

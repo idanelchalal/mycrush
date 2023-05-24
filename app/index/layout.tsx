@@ -1,4 +1,6 @@
+import Header from "@/components/Header";
 import Logo from "@/components/Logo";
+import Provider from "@/components/Provider";
 import getIsAuthenticated from "@/libs/getIsAuthenticated";
 import { redirect } from "next/navigation";
 
@@ -7,13 +9,14 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const isAuth = await getIsAuthenticated();
-  if (!isAuth) return redirect("/auth");
+  const session = await getIsAuthenticated();
+  // if (!session) return redirect("/auth");
   return (
-    <div className="">
-      <main
-        id="main-container"
-        className="
+    <Provider>
+      <div>
+        <main
+          id="main-container"
+          className="
           select-none
           px-6
           pb-6
@@ -29,13 +32,14 @@ export default async function RootLayout({
           items-center
           overflow-hidden
           "
-      >
-        <Logo size="large" />
-        <div className="relative rounded-md h-full w-full py-4 px-6 opacity-70 flex items-center justify-center overflow-hidden">
-          <div className="bg-slate-50 absolute w-full h-full"></div>
-          {children}
-        </div>
-      </main>
-    </div>
+        >
+          <Header />
+          <div className="relative rounded-md h-full w-full py-4 px-6 opacity-70 flex items-center justify-center overflow-hidden">
+            <div className="bg-slate-50 absolute w-full h-full"></div>
+            {children}
+          </div>
+        </main>
+      </div>
+    </Provider>
   );
 }
