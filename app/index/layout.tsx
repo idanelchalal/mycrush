@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import MenuModalAdapter from "@/components/Modals/MenuModal/MenuModalAdapter";
 import getIsAuthenticated from "@/libs/getIsAuthenticated";
 import { redirect } from "next/navigation";
+import { Toaster } from "react-hot-toast";
 
 export default async function RootLayout({
   children,
@@ -13,7 +14,7 @@ export default async function RootLayout({
   return (
     <div>
       <MenuModalAdapter session={session} />
-
+      <Toaster />
       <main
         id="main-container"
         className="
