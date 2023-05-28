@@ -38,13 +38,6 @@ model Session {
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-model Coordinates{
-  id  String  @id @default(auto()) @map("_id") @db.ObjectId
-  latitude String?
-  longitude String?
-  userId    String   @db.ObjectId @unique
-  user      User?     @relation(fields: [userId], references: [id])
- }
 
 model User {
   id  String  @id @default(auto()) @map("_id") @db.ObjectId
@@ -52,7 +45,6 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
-  coordinates   Coordinates? 
   accounts      Account[]
   sessions      Session[]
 }
