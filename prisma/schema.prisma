@@ -40,6 +40,8 @@ model Session {
 
 
 model User {
+  location Json? @db.Json
+  maxDistance Int @default(5000)
   id  String  @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
   email         String?   @unique

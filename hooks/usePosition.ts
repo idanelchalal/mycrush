@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 
 export const usePosition = () => {
     const [coords, setCoords] = useState<{
-        longitude: Number
-        latitude: Number
-    }>({ longitude: 0, latitude: 0 })
+        longitude: Number | null
+        latitude: Number | null
+    }>({ longitude: null, latitude: null })
 
     useEffect(() => {
         let watchId: any = null
@@ -26,6 +26,7 @@ export const usePosition = () => {
                 errorCallback,
                 {
                     enableHighAccuracy: true,
+                    timeout: 6000,
                 }
             )
         } else {

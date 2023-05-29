@@ -1,7 +1,8 @@
 import Header from '@/components/Header'
 import MenuModalAdapter from '@/components/Modals/MenuModal/MenuModalAdapter'
 import getIsAuthenticated from '@/libs/getIsAuthenticated'
-import updateCoords from '@/libs/updateCoords'
+import axios from 'axios'
+
 import { redirect } from 'next/navigation'
 import { Toaster } from 'react-hot-toast'
 
