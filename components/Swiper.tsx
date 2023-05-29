@@ -14,9 +14,6 @@ import { User } from '@prisma/client'
 
 import { useSession } from 'next-auth/react'
 import { usePosition } from '@/hooks/usePosition'
-import getUsersCards from '@/utils/getUsersCards'
-import SkeletonProvider from './SkeletonProvider'
-import Skeleton from 'react-loading-skeleton'
 
 const Swiper = () => {
     const [usersCards, setUsersCards] = useState<User[]>([])
@@ -24,7 +21,6 @@ const Swiper = () => {
     const [isLoading, setIsLoading] = useState<boolean | null>(null)
     const { data, update } = useSession()
     const { longitude, latitude } = usePosition()
-    const session = data?.user
 
     const updateLocation = useCallback(async () => {
         await axios.post('/api/actions/set-location', {
@@ -38,19 +34,26 @@ const Swiper = () => {
         setIsLoading(true)
 
         if (data?.location) {
-            const cards = await axios.post('api/users/get-by-distance', data)
-            setUsersCards(cards.data)
+            try {
+                const cards = await axios.post(
+                    'api/users/get-by-distance',
+                    data
+                )
+                setUsersCards(cards.data)
+            } catch (err: any) {
+                setIsLoading(false)
+                console.error(err)
+            }
         }
 
         setIsLoading(false)
     }, [data, setIsLoading])
 
     const likeCard = useCallback(async () => {
-        console.log(data)
         if (!currentCard) return
         try {
             const req = await axios.post(`/api/actions/like-card`, {
-                session,
+                data,
                 currentCard,
             })
 
@@ -64,13 +67,13 @@ const Swiper = () => {
             toast.error('An error ocurred.')
             console.error(error.message)
         }
-    }, [currentCard, usersCards, session, setCurrentCard])
+    }, [currentCard, usersCards, data, setCurrentCard])
 
     const dislikeCard = useCallback(async () => {
         if (!currentCard) return
         try {
             const req = await axios.post(`/api/actions/dislike-card`, {
-                session,
+                data,
                 currentCard,
             })
 
@@ -84,7 +87,7 @@ const Swiper = () => {
             toast.error('An error ocurred.')
             console.error(error.message)
         }
-    }, [currentCard, usersCards, setCurrentCard, session])
+    }, [currentCard, usersCards, setCurrentCard, data])
 
     useEffect(() => {
         if (data?.user?.email && latitude && longitude) updateLocation()

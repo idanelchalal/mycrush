@@ -26,7 +26,8 @@ export const Options: AuthOptions = {
         async session({ session, token, user }) {
             const location = token.location
             const maxDistance = token.maxDistance
-            return { ...session, location, maxDistance }
+            const userId = token.id
+            return { ...session, location, maxDistance, userId }
         },
 
         async jwt({ user, account, token }) {

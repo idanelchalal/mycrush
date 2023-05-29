@@ -40,9 +40,10 @@ model Session {
 
 
 model User {
+  id  String  @id @default(auto()) @map("_id") @db.ObjectId
   location Json? @db.Json
   maxDistance Int @default(5000)
-  id  String  @id @default(auto()) @map("_id") @db.ObjectId
+  likedProfiles String[] 
   name          String?
   email         String?   @unique
   emailVerified DateTime?

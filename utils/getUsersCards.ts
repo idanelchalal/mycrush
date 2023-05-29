@@ -6,11 +6,17 @@ import client from '@/libs/prismadb'
 const prisma = client
 
 export default async function getUsersCards(session?: any) {
-    // if (!session) session = await getIsAuthenticated()
+    const user = await prisma.user.findUnique({
+        where: {
+            id: session.userId,
+        },
+    })
+
     const users = await getUsersByCoordinates(
         session.user.email,
         session.location,
-        session.maxDistance
+        session.maxDistance,
+        user?.likedProfiles || []
     )
 
     return users
