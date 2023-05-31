@@ -16,6 +16,7 @@ export const usePosition = () => {
         }
 
         const errorCallback = (error: any) => {
+            console.table(error)
             throw new Error('usePosition: Error retrieving location:', error)
         }
 
@@ -26,7 +27,6 @@ export const usePosition = () => {
                 errorCallback,
                 {
                     enableHighAccuracy: true,
-                    timeout: 6000,
                 }
             )
         } else {

@@ -15,8 +15,12 @@ import { User } from '@prisma/client'
 import { useSession } from 'next-auth/react'
 import { usePosition } from '@/hooks/usePosition'
 
+// TODO:
+// IMPLEMENT matchedProfile
+
 const Swiper = () => {
     const [usersCards, setUsersCards] = useState<User[]>([])
+    const [matchedProfile, setMatchedProfile] = useState(null)
     const [currentCard, setCurrentCard] = useState<User | null>(null)
     const [isLoading, setIsLoading] = useState<boolean | null>(null)
     const { data, update } = useSession()
@@ -56,7 +60,9 @@ const Swiper = () => {
                 data,
                 currentCard,
             })
-
+            if (req.data.match) {
+                setMatchedProfile(req.data)
+            }
             setUsersCards((prevCards) => {
                 return prevCards?.filter((card) => card.id !== currentCard.id)
             })

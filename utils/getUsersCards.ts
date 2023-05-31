@@ -13,10 +13,11 @@ export default async function getUsersCards(session?: any) {
     })
 
     const users = await getUsersByCoordinates(
-        session.user.email,
-        session.location,
-        session.maxDistance,
-        user?.likedProfiles || []
+        user?.email!,
+        user?.location,
+        user?.maxDistance,
+        user?.likedProfiles || [],
+        user?.dislikedProfiles || []
     )
 
     return users

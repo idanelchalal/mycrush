@@ -5,17 +5,23 @@ const getUsersByCoordinates = async (
     email: string,
     location: any,
     maxDistance?: number,
-    likedProfiles?: Array<any>
+    likedProfiles?: Array<any>,
+    dislikedProfiles?: Array<any>
 ) => {
     // NEED TO IMPLEMENT A SEARCH BASED ON AN ARRAY
     const likedProfileIds = likedProfiles?.map((id) => {
         return { $oid: new ObjectId(id) }
-    })
+    }) as Array<any>
 
-    // TODO: IMPLEMENT THIS FOR DISLIKED PROFILES
-    // const dislikedProfiles = dislikedProfiles?.map((id) => {
-    //     return { $oid: new ObjectId(id) }
-    // })
+    const dislikedProfilesIds = dislikedProfiles?.map((id) => {
+        return { $oid: new ObjectId(id) }
+    }) as Array<any>
+
+    let finalIdsArray: Array<any> = [...dislikedProfilesIds, ...likedProfileIds]
+    finalIdsArray = finalIdsArray.reduce(
+        (unique, item) => (unique.includes(item) ? unique : [...unique, item]),
+        []
+    )
 
     const result = await client.user.findRaw({
         filter: {
@@ -24,9 +30,7 @@ const getUsersByCoordinates = async (
             },
 
             _id: {
-                $nin: likedProfileIds,
-                // IMPLEMENT HERE ANOTHER FIELD FOR DISLIKED PROFILES
-                // $nin: dislikedProfileIds,
+                $nin: finalIdsArray,
             },
 
             location: {
