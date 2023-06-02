@@ -9,6 +9,15 @@ const page = async () => {
 
     const matchedProfiles = await getMatchedProfiles(session.userId)
 
+    // await client.message.create({
+    //     data: {
+    //         content: 'HELLO MAN',
+    //         receiverId: '6474cf6b367bfe3df68901d3',
+    //         senderId: '6474cf76367bfe3df68901d6',
+    //         chatId: '6479e4b8abcf90116bbaa730',
+    //     },
+    // })
+
     return (
         <>
             <section
@@ -18,6 +27,7 @@ const page = async () => {
             >
                 {matchedProfiles.map((profile) => (
                     <UserEntry
+                        chatId={profile.chat?.id}
                         user={profile.user}
                         lastMessage={profile.chat?.messages?.[0]}
                         key={profile.chat?.id + Date.now()}

@@ -17,7 +17,7 @@ const layout = async ({ children }: { children?: React.ReactNode }) => {
             id="main-container"
             className="
           select-none
-          pb-6
+          
           bg-white
           border border-slate-100
           relative
@@ -32,7 +32,6 @@ const layout = async ({ children }: { children?: React.ReactNode }) => {
           "
         >
             <Toaster />
-
             <div className="h-20 bg-secondaryColor w-full">
                 <div className="absolute left-4 top-4">
                     <Link href={'/'} className="">

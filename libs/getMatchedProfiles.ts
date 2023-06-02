@@ -1,29 +1,8 @@
 import { matchObject } from '@/types'
 import client from './prismadb'
+import getChat from '@/utils/getChat'
 
 const prisma = client
-
-// Gets the 30 last messages of a given chat of 2 users.
-
-async function getChat(firstUserId: string, secondUserId: string) {
-    return await prisma.chat.findFirst({
-        where: {
-            participantsIds: {
-                hasEvery: [firstUserId, secondUserId],
-            },
-        },
-        select: {
-            id: true,
-            createdAt: true,
-            messages: {
-                take: 30,
-                orderBy: {
-                    createdAt: 'desc',
-                },
-            },
-        },
-    })
-}
 
 export const getMatchedProfiles = async (userId: string) => {
     // Array of all the id's of the matched profiles
@@ -41,6 +20,7 @@ export const getMatchedProfiles = async (userId: string) => {
 
     const ids = matchesArray?.matchedProfiles!
 
+    // Recreates match Objects to pass
     const allChats: matchObject[] = await Promise.all(
         ids.map(async (matchedId) => ({
             chat: await getChat(matchedId, userId),
