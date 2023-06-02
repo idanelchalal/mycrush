@@ -11,6 +11,7 @@ declare module 'next-auth/jwt' {
 
 declare module 'next-auth' {
     interface Session {
+        userId: string
         location: LocationObject
         maxDistance: Number
         user: User & {

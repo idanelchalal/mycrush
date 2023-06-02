@@ -32,12 +32,39 @@ export async function POST(req: Request) {
         },
     })
 
-    if (likedUser)
+    if (likedUser) {
+        // If users have liked each other, updating the MatchedProfiles array in the Db.
+
+        // Liked user
+        await prisma.user.update({
+            where: {
+                id: likedUser.id,
+            },
+            data: {
+                matchedProfiles: {
+                    push: userPerformedAction,
+                },
+            },
+        })
+
+        // User who liked.
+        await prisma.user.update({
+            where: {
+                id: userPerformedAction,
+            },
+            data: {
+                matchedProfiles: {
+                    push: likeProfileId,
+                },
+            },
+        })
+
         return NextResponse.json({
             match: true,
             message: 'New match with ' + likedUser.name,
             likedProfileImg: likedUser.image,
         })
+    }
 
     return NextResponse.json('ok')
 }

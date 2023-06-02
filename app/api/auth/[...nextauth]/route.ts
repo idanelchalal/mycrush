@@ -27,6 +27,7 @@ export const Options: AuthOptions = {
             const location = token.location
             const maxDistance = token.maxDistance
             const userId = token.id
+
             return { ...session, location, maxDistance, userId }
         },
 

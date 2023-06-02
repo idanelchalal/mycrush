@@ -1,7 +1,9 @@
-import React from 'react'
+import getIsAuthenticated from '@/libs/getIsAuthenticated'
+import { redirect } from 'next/navigation'
 
-const page = ({ params }: { params: { chatId: string } }) => {
-    return <div>page</div>
+const page = async ({ params }: { params: { chatId: string } }) => {
+    const session = await getIsAuthenticated()
+    if (!session) redirect('/')
 }
 
 export default page
