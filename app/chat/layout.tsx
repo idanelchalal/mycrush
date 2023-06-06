@@ -36,7 +36,7 @@ const layout = async ({ children }: { children?: React.ReactNode }) => {
                 <div className="absolute left-4 top-4">
                     <Link href={'/'} className="">
                         <IoReturnUpBackOutline
-                            className={`transition cursor-pointer hover:bg-gray-50 rounded-full w-14 h-14 p-2 text-white flex items-center justify-center`}
+                            className={`transition cursor-pointer hover:bg-gray-50/20 rounded-full w-14 h-14 p-2 text-white flex items-center justify-center`}
                         />
                     </Link>
                 </div>

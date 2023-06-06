@@ -36,7 +36,7 @@ export async function getChatById(chatId: string, messagesLimit: number) {
             messages: {
                 take: messagesLimit ? messagesLimit : 1,
                 orderBy: {
-                    createdAt: 'desc',
+                    createdAt: 'asc',
                 },
             },
         },

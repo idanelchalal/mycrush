@@ -26,11 +26,12 @@ const page = async ({ params }: { params: { chatId: string } }) => {
     return (
         <>
             <Chat
+                session={session}
                 chat={chat}
-                receiverAvatar={matchAvatar?.image}
-                receiverName={matchAvatar?.name}
-                currentName={session.user.name}
-                currentAvatar={session.user.image}
+                receiverAvatar={matchAvatar!.image}
+                receiverName={matchAvatar!.name}
+                currentName={session!.user!.name!}
+                currentAvatar={session!.user!.image!}
             />
         </>
     )
